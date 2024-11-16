@@ -8,5 +8,14 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "ace-builds": "^1.36.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.21.1",
+    "mongoose": "^7.8.2",
+    "socket.io": "^4.8.0",
+    "uuid": "^10.0.0"
+  }
 }
