@@ -17,7 +17,7 @@ const io = new Server(server, {
 const PORT = 5000;
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://movie:movie@movie.fmsmzly.mongodb.net/store', {
+mongoose.connect('mongodb+srv://movie:movie@movie.fmsmzly.mongodb.net/fuck', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
