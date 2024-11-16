@@ -4,38 +4,25 @@
   "private": true,
   "dependencies": {
     "@monaco-editor/react": "^4.6.0",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "ace-builds": "^1.36.3",
     "axios": "^0.21.4",
     "cors": "^2.8.5",
     "firebase": "^10.14.1",
-    "i": "^0.3.7",
-    "npm": "^10.9.0",
-    "react": "^18.3.1",
+    "react": "^17.0.2",
     "react-ace": "^12.0.0",
-    "react-dom": "^18.3.1",
+    "react-dom": "^17.0.2",
     "react-player": "^2.16.0",
     "react-router-dom": "^6.27.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "react-youtube": "^10.1.0",
     "socket.io-client": "^4.8.0",
-    "video.js": "^8.18.1",
-    "web-vitals": "^2.1.4",
-    "worker": "^0.4.0"
+    "video.js": "^8.18.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
@@ -48,5 +35,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "ace-builds/src-noconflict/worker-javascript": false
   }
 }

@@ -1,0 +1,42 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 60vw;
+    background-color:#FAF5E9 ;
+    height: 60vh;
+}
+.room_head{
+    color: #970747;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.room_input{
+    height: 20px;
+    width: 80%;
+    padding: 5px;
+    border: none;
+    /* margin: 10px; */
+    border:2px solid #970747;
+    margin-left: 10px;
+}
+.room_btn{
+    /* height:2px ; */
+    padding: 10px;
+    width: 15%;
+    border: none;
+    background-color: #0FFCBE;
+}
+.room_playing{
+    color: #970747;
+    margin: 5px;
+}
+.room_video_container{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.room_video{
+    padding-left: 20px;
+    flex-grow: 1;
+}

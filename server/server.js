@@ -17,7 +17,7 @@ const io = new Server(server, {
 const PORT = 5000;
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://movie:movie@movie.fmsmzly.mongodb.net/fuck', {
+mongoose.connect('mongodb+srv://movie:movie@movie.fmsmzly.mongodb.net/test3', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -58,8 +58,20 @@ io.on('connection', (socket) => {
     }
   });
 
+  // Handle chat messages
+  socket.on('sendMessage', (message, roomId) => {
+    if (rooms[roomId]) {
+      let user = "Users"
+      const messageData = { username: user, message };
+      rooms[roomId].messages.push(messageData); // Save message in room
+      io.to(roomId).emit('receiveMessage', messageData); // Broadcast message to room
+      console.log(`Message from ${socket.id} in room ${roomId}: ${message}`);
+    } else {
+      console.warn(`Room ${roomId} not found.`);
+    }
+  });
 
-  
+  // Handle video URL sharing
   socket.on('sendVideoUrl', (url, roomId) => {
     if (rooms[roomId]) {
       rooms[roomId].videoUrl = url; // Save video URL in room
@@ -67,7 +79,34 @@ io.on('connection', (socket) => {
       console.log(`Video URL set for room ${roomId}: ${url}`);
     }
   });
+  
+  // Video control events (play, pause, and seek)
+  socket.on('playVideo', (time, roomId) => {
+    io.to(roomId).emit('playVideo', time); // Emit play event with the time to all users
+    console.log(`Play video in room ${roomId} at time: ${time}`);
   });
+
+  socket.on('pauseVideo', (time, roomId) => {
+    io.to(roomId).emit('pauseVideo', time); // Emit pause event with the time to all users
+    console.log(`Pause video in room ${roomId} at time: ${time}`);
+  });
+
+  socket.on('seekVideo', (time, roomId) => {
+    io.to(roomId).emit('seekVideo', time); // Emit seek event with the time to all users
+    console.log(`Seek video in room ${roomId} to time: ${time}`);
+  });
+
+  // Handle collaborative coding
+  socket.on('codeUpdate', (newCode, roomId) => {
+    if (rooms[roomId]) {
+      rooms[roomId].code = newCode; // Update the room's code state
+      socket.to(roomId).emit('codeUpdated', newCode); // Broadcast the updated code to all other users in the room
+      console.log(`Code updated in room ${roomId}`);
+    } else {
+      console.warn(`Room ${roomId} not found for code update.`);
+    }
+  });
+});
 
 server.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
